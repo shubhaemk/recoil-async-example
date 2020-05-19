@@ -1,11 +1,10 @@
 import React from 'react';
-import { useRecoilValueLoadable} from 'recoil';
+import { useRecoilValueLoadable } from 'recoil';
 import { fetchUserDetailsWithAtom } from './store/selector';
 
-function DetailsWithAtom() {
+function DetailsWithoutSuspense() {
 
     const userDetailsWithAtom = useRecoilValueLoadable(fetchUserDetailsWithAtom);
-
     const { state } = userDetailsWithAtom;
 
     if(state === 'loading'){
@@ -29,4 +28,4 @@ function DetailsWithAtom() {
     }
 }
 
-export default DetailsWithAtom;
+export default DetailsWithoutSuspense;

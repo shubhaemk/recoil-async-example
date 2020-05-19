@@ -16,5 +16,3 @@ export const fetchUserDetailsWithAtom = selector({
         }
     }
 });
-
-//export const fetchUserDetailsWithParameter = 
