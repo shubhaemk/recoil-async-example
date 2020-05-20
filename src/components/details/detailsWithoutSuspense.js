@@ -1,18 +1,22 @@
 import React from 'react';
 import { useRecoilValueLoadable } from 'recoil';
-import { fetchUserDetailsWithAtom } from './store/selector';
+import { fetchUserDetails } from './store/selector';
 
 function DetailsWithoutSuspense() {
 
-    const userDetailsWithAtom = useRecoilValueLoadable(fetchUserDetailsWithAtom);
-    const { state } = userDetailsWithAtom;
+    const userDetails = useRecoilValueLoadable(fetchUserDetails);
+    const { state } = userDetails;
+    
+    if (state === 'hasError') {
+        return <div> There is some problem! </div>
+    }
 
     if(state === 'loading'){
         return <div>Its loading</div>
     }
 
     if(state === 'hasValue'){
-        const { contents: { data }} = userDetailsWithAtom;
+        const { contents: { data }} = userDetails;
         return (
             data.map(item => (
                 <div key={item.id}>
@@ -21,10 +25,6 @@ function DetailsWithoutSuspense() {
             ))
         );
                     
-    }
-
-    if(state === 'hasError'){
-        return <div> There is some problem! </div>
     }
 }
 

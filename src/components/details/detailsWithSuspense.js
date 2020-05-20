@@ -1,10 +1,10 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { fetchUserDetailsWithAtom } from './store/selector';
+import { fetchUserDetails } from './store/selector';
 
 function DetailsWithSuspense() {
-    const userDetailsWithAtom = useRecoilValue(fetchUserDetailsWithAtom);
-    const { data } = userDetailsWithAtom;
+    const userDetails = useRecoilValue(fetchUserDetails);
+    const { data } = userDetails;
     
     return (
         data.map(item => (

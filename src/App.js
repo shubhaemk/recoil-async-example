@@ -1,6 +1,7 @@
 import React from 'react';
 import DetailsWithoutSuspense from './components/details/detailsWithoutSuspense';
 import DetailsWithSuspense from './components/details/detailsWithSuspense';
+import ErrorBoundary from './components/error/errorBoundary';
 
 function App() {
   return (
@@ -11,11 +12,13 @@ function App() {
         <DetailsWithoutSuspense />
       </div>
       <div style={{ border: '1px solid #000', padding: '20px' }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <p>Details with Suspense</p>
-          <br />
-          <DetailsWithSuspense/>
-        </React.Suspense>
+        <p>Details with Suspense</p>
+        <br />
+        <ErrorBoundary>
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <DetailsWithSuspense />
+          </React.Suspense>
+        </ErrorBoundary>
       </div>
     </div>
   );

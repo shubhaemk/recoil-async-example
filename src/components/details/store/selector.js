@@ -1,18 +1,16 @@
 import { selector } from 'recoil';
-import { pageId } from './atom';
 
-const url = `https://reqres.in/api/users?page=`;
+const url = `https://reqres.in/api/users?page=1`;
 
-export const fetchUserDetailsWithAtom = selector({
+export const fetchUserDetails = selector({
     key: 'userDetailsSelector',
     get: async ({ get }) => {
-        try {
-            const pageIdValue = get(pageId);
-            const response = await fetch(`${url}${pageIdValue}`);
+        try{
+            const response = await fetch(url);
             const data = await response.json();
             return data;
-        } catch (error) {
-            return []
+        }catch(error){
+            throw error;
         }
     }
 });
